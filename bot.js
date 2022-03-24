@@ -976,6 +976,70 @@ if (message.substring(0, 1) == '?') { //...If the message starts with '?'...
 		
 	}//CH5 end---
 	
+	//CH 6-----------------------
+	switch(cmd) {
+		
+		case 'CH6.1':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH6.1** *(G.R.S Mead)*\n>>> Good, O Asclepius, is in none else save in God alone; nay, rather, Good is God Himself eternally.\nIf it be so, [Good] must be essence, from every kind of motion and becoming free (though naught is free from It), possessed of stable energy around Itself, never too little, nor too much, an ever-full supply. [Though] one, yet [is It] source of all; for what supplieth all is Good. When I, moreover, say [supplieth] altogether [all], it is for ever Good. But this belongs to no one else save God alone.\nFor He stands not in need of any thing, so that desiring it He should be bad; nor can a single thing of things that are be lost to him, on losing which He should be pained; for pain is part of bad.\nNor is there aught superior to Him, that He should be subdued by it; nor any peer to Him to do Him wrong, or [so that] He should fall in love on its account; nor aught that gives no ear to Him, whereat He should grow angry; nor wiser aught, for Him to envy.'
+				
+				})
+		break;
+		
+		case 'CH6.2':
+			bot.sendMessage({
+
+                to: channelID,
+
+                message: '**CH6.2** *(G.R.S Mead)*\n>>> Now as all these are non-existent in His being, what is there left but Good alone?\nFor just as naught of bad is to be found in such transcendent Being, so too in no one of the rest will Good be found.\nFor in them are all of the other things <i.e., those things which are not Good> - both in the little and the great, both in each severally and in this living one that\'s greater than them all and the mightiest [of them] <i.e., the cosmos>.\nFor things subject to birth abound in passions, birth in itself being passible. But where there\'s passion, nowhere is there Good; and where is Good, nowhere a single passion. For where is day, nowhere is night; and where is night, day is nowhere.\nWherefore in genesis the Good can never be, but only be in the ingenerate.\nBut seeing that the sharing in all things hath been bestowed on matter, so doth it share in Good.\nIn this way is the Cosmos Good; that, in so far as it doth make all things, as far as making goes it\'s Good, but in all other things it is not Good. For it\'s both passible and subject unto motion, and maker of things passible.'				
+				})
+		break;
+	
+		case 'CH6.3':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH6.3** *(G.R.S Mead)*\n>>> Whereas in man by greater or less of bad is good determined. For what is not too bad down here, is good, and good down here is the least part of bad.\nIt cannot, therefore, be that good down here should be quite clean of bad, for down here good is fouled with bad; and being fouled, it stays no longer good, and staying not it changes into bad.\nIn God alone, is, therefore, Good, or rather Good is God Himself.\nSo then, Asclepius, the name alone of Good is found in men, the thing itself nowhere [in them], for this can never be.\nFor no material body doth contain It - a thing bound on all sides by bad, by labors, pains, desires and passions, by error and by foolish thoughts.\nAnd greatest ill of all, Asclepius, is that each of these things that have been said above, is thought down here to be the greatest good.\nAnd what is still an even greater ill, is belly-lust, the error that doth lead the band of all the other ills - the thing that makes us turn down here from Good.'
+				
+				})
+		break;
+		
+		case 'CH6.4':
+			bot.sendMessage({
+
+                to: channelID,
+
+                message: '**CH6.4** *(G.R.S Mead)*\n>>> And I, for my part, give thanks to God, that He hath cast it in my mind about the Gnosis of the Good, that it can never be It should be in the world. For that the world is "fullness" of the bad, but God of Good, and Good of God.\nThe excellencies of the Beautiful are round the very essence [of the Good]; nay, they do seem too pure, too unalloyed; perchance \'tis they that are themselves Its essences.\nFor one may dare to say, Asclepius - if essence, sooth, He have - God\'s essence is the Beautiful; the Beautiful is further also Good.\nThere is no Good that can be got from objects in the world. For all the things that fall beneath the eye are image-things and pictures as it were; while those that do not meet [the eye are the realities], especially the [essence] of the Beautiful and Good.\nJust as the eye cannot see God, so can it not behold the Beautiful and Good. For that they are integral parts of God, wedded to Him alone, inseparate familiars, most beloved, with whom God is Himself in love, or they with God.'				
+			
+			})
+		break;
+		
+		case 'CH6.5':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH6.5** *(G.R.S Mead)*\n>>> If thou canst God conceive, thou shalt conceive the Beautiful and Good, transcending Light, made lighter than the Light by God. That Beauty is beyond compare, inimitate that Good, e\'en as God is Himself.\nAs, then, thou dost conceive of God, conceive the Beautiful and Good. For they cannot be joined with aught of other things that live, since they can never be divorced from God.\nSeek\'st thou for God, thou seekest for the Beautiful. One is the Path that leadeth unto It - Devotion joined with Gnosis.'
+              
+			  })
+			
+		break;
+		
+		case 'CH6.6':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH6.6** *(G.R.S Mead)*\n>>> And thus it is that they who do not know and do not tread Devotion\'s Path, do dare to call man beautiful and good, though he have ne\'er e\'en in his visions seen a whit that\'s Good, but is enveloped with every kind of bad, and thinks the bad is good, and thus doth make unceasing use of it, and even feareth that it should be ta\'en from him, so straining every nerve not only to preserve but even to increase it.\nSuch are the things that men call good and beautiful, Asclepius - things which we cannot flee or hate; for hardest thing of all is that we\'ve need of them and cannot live without them.'
+				
+				})
+		break;
+		
+	}//CH6 end---
 	
 	//CH 7-----------------------
 	switch(cmd) {
