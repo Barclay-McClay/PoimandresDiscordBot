@@ -16,7 +16,7 @@ Keep in mind: Discord uses markdown text formatting. This is utilised in the bot
 
 etc.
 
-There are definetley better ways to achieve what we are aiming for with this bot. I've opted to do things this way (with the big switch statements) because it suits my current javascript skill level (that is- total novice). And it gives the most direct and simple control of the text/formatting. 
+There are definitely better ways to achieve what we are aiming for with this bot. I've opted to do things this way (with the big switch statements) because it suits my current javascript skill level (that is- total novice). And it gives the most direct and simple control of the text/formatting. 
 After Mead's translation of CH is implemented, if there is interest, we can work on improving the bot so that it pulls the text out of a json file or something. Perhaps with different Hermetica to expand its scope beyond just CH.
 
 Enjoy!
