@@ -2,7 +2,9 @@
 A  Discord Bot for quoting the Corpus Hermeticum
 
 The purpose of this bot is to
+
 A) Have an easy  method for referencing the Corpus Hermeticum on Discord.
+
 B) Learn some basic javascript/discord api programming.
 
 As I am learning, I have commented more or less everything that needs explanation.
