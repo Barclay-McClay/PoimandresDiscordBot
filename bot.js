@@ -1072,6 +1072,60 @@ if (message.substring(0, 1) == '?') { //...If the message starts with '?'...
 		break;
 	}//CH7 end---
 
+	//CH 8-----------------------
+	switch(cmd) {
+		
+		case 'CH8.1':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH8.1** *(G.R.S Mead)*\n>>> **Hermes:** Concerning Soul and Body, son, we now must speak; in what way Soul is deathless, and whence comes the activity in composing and dissolving Body.\nFor there\'s no death for aught of things [that are]; the thought this word conveys, is either void of fact, or [simply] by the knocking off a syllable what is called "death", doth stand for "deathless".\nFor death is of destruction, and nothing in the Cosmos is destroyed. For if Cosmos is second God, a life <or living creature> that cannot die, it cannot be that any part of this immortal life should die. All things in Cosmos are parts of Cosmos, and most of all is man, the rational animal.'
+				
+			})
+		break;
+		
+		case 'CH8.2':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH8.2** *(G.R.S Mead)*\n>>> For truly first of all, eternal and transcending birth, is God the universals\' Maker. Second is he "after His image", Cosmos, brought into being by Him, sustained and fed by Him, made deathless, as by his own Sire, living for aye, as ever free from death.\nNow that which ever-liveth, differs from the Eternal; for He hath not been brought to being by another, and even if He have been brought to being, He hath not been brought to being by Himself, but ever is brought into being.\nFor the Eternal, in that It is eternal, is the all. The Father is Himself eternal of Himself, but Cosmos hath become eternal and immortal by the Father.'
+				
+			})
+		break;
+	
+		case 'CH8.3':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH8.3** *(G.R.S Mead)*\n>>> And of the matter stored beneath it <i.e., beneath the cosmos>, the Father made of it a universal body, and packing it together made it spherical - wrapping it round the life - [a sphere] which is immortal in itself, and that doth make materiality eternal.\nBut He, the Father, full-filled with His ideas, did sow the lives <or living creatures> into the sphere, and shut them in as in a cave, willing to order forth the life with every kind of living.\nSo He with deathlessness enclosed the universal body, that matter might not wish to separate itself from body\'s composition, and so dissolve into its own [original] unorder.\nFor matter, son, when it was yet incorporate <i.e., not yet formed into bodies>, was in unorder. And it doth still retain down here this [nature of unorder] enveloping the rest of the small lives <or living creatures> - that increase-and-decrease which men call death.'
+				
+			})
+		break;
+		
+		case 'CH8.4':
+			bot.sendMessage({
+
+                to: channelID,
+
+                message: '**CH8.4** *(G.R.S Mead)*\n>>> And of the matter stored beneath it <i.e., beneath the cosmos>, the Father made of it a universal body, and packing it together made it spherical - wrapping it round the life - [a sphere] which is immortal in itself, and that doth make materiality eternal.\nBut He, the Father, full-filled with His ideas, did sow the lives <or living creatures> into the sphere, and shut them in as in a cave, willing to order forth the life with every kind of living.\nSo He with deathlessness enclosed the universal body, that matter might not wish to separate itself from body\'s composition, and so dissolve into its own [original] unorder.\nFor matter, son, when it was yet incorporate <i.e., not yet formed into bodies>, was in unorder. And it doth still retain down here this [nature of unorder] enveloping the rest of the small lives <or living creatures> - that increase-and-decrease which men call death.'			
+			})
+		break;
+		
+		case 'CH8.5':
+			bot.sendMessage({
+
+                to: channelID,
+
+				message: '**CH8.5** *(G.R.S Mead)*\n>>> **Hermes:** Now the third life - Man, after the image of the Cosmos made, [and] having mind, after the Father\'s will, beyond all earthly lives - not only doth have feeling with the second God <i.e., the Cosmos>, but also hath conception of the first; for of the one \'tis sensible as of a body, while of the other it conceives as bodiless and the Good Mind.\n**Tat:** Doth then this life not perish?\n**H:** Hush, son! and understand what God, what Cosmos [is], what is a life that cannot die, and what a life subject to dissolution.\nYea, understand the Cosmos is by God and in God; but Man by Cosmos and in Cosmos.\nThe source and limit and the constitution of all things is God.'
+			  
+			 })
+		break;
+				
+	}//CH8 end---
+	
  }//else the message Poimandres heard didnt start with '?'...
  
 
