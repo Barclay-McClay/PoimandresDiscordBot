@@ -62,6 +62,8 @@ var Discord = require('discord.io');
 var logger = require('winston');
 var auth = require('./auth.json');
 var ch = require('./books/mead-ch.json');
+var emeraldtablet = require('./books/emeraldtablet.json');
+
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -91,12 +93,11 @@ bot.on('ready', function(evt) {
 
 bot.on('message', function(user, userID, channelID, message, evt) { //First, Poimandres will listen for messages...
   // Store our output message here.
-  var output = '';
+ var output = '';
 
   // We are looking for something like "?lookup CH 1.2"
-  if (message.substring(0, 7) == '?lookup') { //...If the message starts with '?'...
+  if (message.substring(0, 7) == '?lookup') { //...If the message starts with '?lookup'...
     var args = message.split(' '); 
-    
     // Split cmd into bits. The first bit should be the initials of a book, the second the index into that book. For example, "CH 1.2"
     var bookName = args[1].toUpperCase();
     var bookPart = args[2];
@@ -105,21 +106,29 @@ bot.on('message', function(user, userID, channelID, message, evt) { //First, Poi
     if (ch.alias == bookName) {
       if (undefined !== ch.contents[bookPart]) {
         output = '**CH' + bookPart + '** *' + ch.translator + '*\n>>> ' + ch.contents[bookPart].message;
-      }
-      else {
+      } else {
         ouput = '**Book section ' + bookPart + ' not found!**';
       }
+	//Is it the Emerald Tablet?
+    } else if (emeraldtablet.alias == bookName) {
+	  if (undefined !== emeraldtablet.contents[bookPart]) {
+        output = '**The Emerald Tablet** *' + emeraldtablet.translator + '*\n>>> ' + emeraldtablet.contents[bookPart].message;
+      } else {
+        ouput = 'Try `*?lookup Emerald Tablet*`';
+      }
+	} else if (bookName.substring(0, 7) == 'EMERALD'){
+		ouput = 'Try `*?lookup Emerald Tablet*`';
+		
+	} else {
+	 output = '**Book ' + bookName + ' not found!**';
     }
-    else {
-      output = '**Book ' + bookName + ' not found!**';
-    }
-
-    bot.sendMessage({
-      to: channelID,
-      message: output
-    });
-    
-  } //else the message Poimandres heard didnt start with '?'...
+	
+	//Poimandres then replies with message stored in 'output' var
+	bot.sendMessage({
+		to: channelID,
+		message: output
+	});
+	
+  } //else the message Poimandres heard didnt start with '?lookup'...
 
 }); //end of Poimandres listening to messages
-
