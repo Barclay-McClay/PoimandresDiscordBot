@@ -1,22 +1,14 @@
 # PoimandresDiscordBot
 A  Discord Bot for quoting the Corpus Hermeticum
+Currently, the supported commands are limited to G.R.S Mead's CH and one translation of the Emerald Tablet.
 
-The purpose of this bot is to
-
-A) Have an easy  method for referencing the freely available Hermetic Texts on Discord.
-
-B) Learn some basic javascript/discord api programming.
-
-As I am learning, I have commented more or less everything that needs explanation.
-
-Keep in mind: Discord uses markdown text formatting. This is utilised in the bot's messages. eg.
-
-`**this text is bold** `
-
-`>>> this text is indented`
-
-etc.
-
-\books\ contains JSON files which bot.js pulls from.
-
-Enjoy!
+ Try:
+  `?lookup ch 1.2`
+  or
+  `?lookup emerald tablet`
+  
+  -
+  
+  `/books/` directory contains json-formatted copies of the Hermetic texts (filling this out is an on-going project)
+  
+  `bot.js` is where the bot goes online, listens for messages, responds to lookup requests, etc.
