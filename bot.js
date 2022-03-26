@@ -60,10 +60,10 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO'.:XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 //Poimandres needs a few modules to run
 var Discord = require('discord.io');
 var logger = require('winston');
-var auth = require('./auth.json');
-var ch = require('./books/mead-ch.json');
-var emeraldtablet = require('./books/emeraldtablet.json');
-
+const auth = require('./auth.json');
+const ch = require('./books/mead-ch.json');
+const emeraldtablet = require('./books/emeraldtablet.json');
+const kjBible = require('./books/king-james-bible.json');
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -92,43 +92,51 @@ bot.on('ready', function(evt) {
 
 
 bot.on('message', function(user, userID, channelID, message, evt) { //First, Poimandres will listen for messages...
-  // Store our output message here.
- var output = '';
+  var output = '';  // Store our output message here.
+  var messageRaw = message.toUpperCase(); //force message to uppercase for easy comparison
+if (messageRaw.substring(0,1) == '?') { //We are looking at a message beginning with '?'
 
-  // We are looking for something like "?lookup CH 1.2"
-  if (message.substring(0, 7) == '?lookup') { //...If the message starts with '?lookup'...
-    var args = message.split(' '); 
-    // Split cmd into bits. The first bit should be the initials of a book, the second the index into that book. For example, "CH 1.2"
-    var bookName = args[1].toUpperCase();
-    var bookPart = args[2];
-
-    // Is this the Corpus Hermeticum? Cool, let's go!
-    if (ch.alias == bookName) {
-      if (undefined !== ch.contents[bookPart]) {
-        output = '**CH' + bookPart + '** *' + ch.translator + '*\n>>> ' + ch.contents[bookPart].message;
-      } else {
+    logger.info('INPUT: '+ message); //send it to the logger
+	var cmd = messageRaw.substring(1); //remove the ?
+	cmd = cmd.replace(':','.'); //replace semicolons with periods
+	var args = cmd.split(' '); //split the command into its seperate arguments
+    var bookPart = args[1]; //
+	
+   //HERMETICA--------------------------------
+	// We are looking for something like "?CH 1.2"
+	if (args[0] == 'CH') { //...If the message starts with '?CH'...
+    if (undefined !== ch.contents[bookPart]) {
+        output = '**CH ' + bookPart + '** *' + ch.translator + '*\n>>> ' + ch.contents[bookPart].message;
+      }
+	  if (output == ''){
         ouput = '**Book section ' + bookPart + ' not found!**';
       }
-	//Is it the Emerald Tablet?
-    } else if (emeraldtablet.alias == bookName) {
-	  if (undefined !== emeraldtablet.contents[bookPart]) {
-        output = '**The Emerald Tablet** *' + emeraldtablet.translator + '*\n>>> ' + emeraldtablet.contents[bookPart].message;
-      } else {
-        ouput = 'Try `*?lookup Emerald Tablet*`';
-      }
-	} else if (bookName.substring(0, 7) == 'EMERALD'){
-		ouput = 'Try `*?lookup Emerald Tablet*`';
-		
-	} else {
-	 output = '**Book ' + bookName + ' not found!**';
-    }
-	
+
+	//Is it the Emerald Tablet
+	}else if (args[0] == 'EMERALD') {
+	  logger.info('INPUT: '+ message);
+	  output = '**The Emerald Tablet** *' + emeraldtablet.translator + '*\n>>> ' + emeraldtablet.message;
+
+	  //---------------------------------------------
+	//BIBLE BOOKS----------------------------
+	} else if (undefined !== kjBible[args[0]]) { //we have a bible book under that name
+		if (undefined !== kjBible[args[0]][bookPart]){
+			var book = kjBible[args[0]][bookPart].message;
+			output = '>>> '+book;
+		}else{
+			ouput = '**'+args[0]+' ' + bookPart + ' not found!**';
+		}
+	} //---------------------------------------------
+	 
 	//Poimandres then replies with message stored in 'output' var
 	bot.sendMessage({
 		to: channelID,
 		message: output
 	});
-	
-  } //else the message Poimandres heard didnt start with '?lookup'...
-
+	 
+	if (output !== '') {//logger for debug--
+		logger.info('OUTPUT: '+output);
+	}//--
+	 
+}//else the message Poimandres heard didnt start with a '?' command
 }); //end of Poimandres listening to messages
