@@ -5,6 +5,7 @@
  Try:
   
   `?ch 1.2`
+  
   `?ah 1`
   or
   `?emerald tablet`
@@ -19,7 +20,7 @@
   
   As well as The Book of the Law
   
-  `?ah 1.1`
+  `?al 1.1`
  
   <h4>Structure</h4>
   
