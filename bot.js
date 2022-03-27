@@ -56,14 +56,29 @@ MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWl  .xMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMd. '0MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO'.:XMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 ******************************************************************************************/
+/*
 
+SUPPORTED COMMANDS:
+
+?HELP			- Suggests basic commands to get user started.
+?CH				- Refrences GRS Mead's Corpus Hermeticum (eg. ?ch 1.2)
+?EMERALD		- Refrences 12th Century Latin Emerald Tablet
+?QURAN			- Refrences Qur'an (eg. ?quran 1.1)
+?<BIBLE BOOK>	- Refrences King James Bible (eg. ?genesis 1.1 or ?matthew 1.1)
+?AL				- Refrences Thelema's Book of the Law (Liber AL vel Legis) (eg. ?al 1.1)
+
+*/
 //Poimandres needs a few modules to run
 var Discord = require('discord.io');
 var logger = require('winston');
 const auth = require('./auth.json');
+//books in json library
 const ch = require('./books/mead-ch.json');
+const ah = require('./books/mead-ah.json');
 const emeraldtablet = require('./books/emeraldtablet.json');
 const kjBible = require('./books/king-james-bible.json');
+const quran = require('./books/sahih-quran.json');
+const liberlegis = require('./books/liber-al-legis.json');
 
 // Configure logger settings
 logger.remove(logger.transports.Console);
@@ -102,29 +117,70 @@ if (messageRaw.substring(0,1) == '?') { //We are looking at a message beginning 
 	var args = cmd.split(' '); //split the command into its seperate arguments
     var bookPart = args[1]; //
 	
-   //HERMETICA--------------------------------
-	// We are looking for something like "?CH 1.2"
-	if (args[0] == 'CH') { //...If the message starts with '?CH'...
+	//GENERAL HELP/BOT COMMANDS---------------------
+	if (args[0] == 'HELP'){
+		logger.info(args[0]);
+		output = '*eg.*\n`?ch 1.2`\n`?emerald tablet`\n`?genesis 1.1`'//\n*For a full list of commands to be sent to you via DM, type* `?list`';
+	//----------------------------------------------
+	//}else if (args[0] == 'LIST'){
+	//	bot.sendMessage({
+	//	to: user,
+	//	message: 'This feature is not yet supported.';
+	//	});
+	
+   //HERMETICA--------------------------------------
+	//CORPUS HERMETICUM-----------------------------
+	} else	if (args[0] == 'CH') { //...If the message starts with '?CH'...
     if (undefined !== ch.contents[bookPart]) {
         output = '**CH ' + bookPart + '** *' + ch.translator + '*\n>>> ' + ch.contents[bookPart].message;
       }
 	  if (output == ''){
-        ouput = '**Book section ' + bookPart + ' not found!**';
+        output = '**Book section ' + bookPart + ' not found!**';
+      }
+	 //ASCLEPIUS------------------------------------
+	} else	if (args[0] == 'AH') { //...If the message starts with '?CH'...
+    if (undefined !== ah[bookPart]) {
+		var outRaw =  '**Asclepius ' + bookPart + '** *' + ah.translator + '*\n>>> ' + ah[bookPart];
+		if (outRaw.length > 2000) {
+			output = "***Sorry - This section is too long for Discord's character limit.***"
+		}else{
+			output = outRaw;
+		}
+      }
+	  if (output == ''){
+        output = '**Asclepius section ' + bookPart + ' not found!**';
       }
 
-	//Is it the Emerald Tablet
+	//THE EMERALD TABLET
 	}else if (args[0] == 'EMERALD') {
-	  logger.info('INPUT: '+ message);
+
 	  output = '**The Emerald Tablet** *' + emeraldtablet.translator + '*\n>>> ' + emeraldtablet.message;
 
-	  //---------------------------------------------
-	//BIBLE BOOKS----------------------------
+	//---------------------------------------------
+	//QURAN----------------------------------------
+	}else if (args[0] == 'QURAN'){
+		if (undefined !== quran[args[1]]){
+			output = "**al-Qur'ān " + bookPart + '** *' + quran.translator + '*\n>>> '+ quran[args[1]];
+		}else{
+			output = '**Qur\'an ' + bookPart + ' not found!**\n- Try `?quran 1.1`';
+		}
+		
+	//---------------------------------------------
+	//LIBER AL LEGIS
+	}else if (args[0] == 'AL'){
+		if (undefined !== liberlegis[args[1]]){
+			output = "**Liber AL vel Legis " + bookPart + '** *' + liberlegis.translator + '*\n>>> '+ liberlegis[bookPart];
+		}else{
+			output = '**Liber AL vel Legis ' + bookPart +' not found!**\n-Try: `?AL 3.75`**';
+		}
+	//---------------------------------------------
+	//BIBLE BOOKS----------------------------------
 	} else if (undefined !== kjBible[args[0]]) { //we have a bible book under that name
 		if (undefined !== kjBible[args[0]][bookPart]){
 			var book = kjBible[args[0]][bookPart].message;
 			output = '>>> '+book;
 		}else{
-			ouput = '**'+args[0]+' ' + bookPart + ' not found!**';
+			output = '**'+args[0]+' ' + bookPart + ' not found!**';
 		}
 	} //---------------------------------------------
 	 
