@@ -26,68 +26,15 @@ module.exports = {
             var bodyText =  '**Not found**\ntry: `/ah  1`'; ////<----CHANGE THE EXAMPLE of what a 'proper' call to this command looks like
         }
 
-     //Forward/Back labels
-     let backLabel = '';
-     let fwdLabel = '';
- 
-     if (Number.isInteger(Number(bookPart))){ //is it whole number ref (1...2...3)
-         let fwdInt = Number(bookPart) + 1;
-         let backInt = Number(bookPart) - 1;
-         backLabel = String(Number(bookPart) - 1);
-             if ((undefined !== bookRef[backLabel])&&(Number(backLabel) > 0)) { //we are not at start of book
-                 backLabel = '< ' + String(backInt);
-             }else{
-                 backLabel = '';
-             }
-             fwdLabel = String(fwdInt);
-             if (undefined !== bookRef[fwdLabel]) { //look up the next part of the book in the book.json
-                 fwdLabel = fwdLabel + ' >';
-             }else{
-                 fwdLabel = '';
-             }
-     }else if (!isNaN(Number(bookPart))){ //its not a whole number  (1.1 ... 1.2 ... 1.3)
-         const bookRef = bookPart.split('.');
-         const chapStr = bookRef[0];
-         const verseStr = bookRef[1];
-         let backVerseStr = String(Number(verseStr) - 1);
-         if (undefined !== bookRef[backLabel]) { //we are not at end of book
-             backLabel = '< ' + String(backInt);
-         }else{ //if that doesnt work,  we'll change the chapter instead.
-             const backChapStr = String(Number(chapStr) - 1);
-             backVerseStr= "1"; //go to the beginning
-             backLabel = backChapStr+'.'+backVerseStr;
-             if (undefined !== bookRef[backLabel]) { //look up the previous chapter
-                 backLabel =  '< '+backLabel; //present it if available
-             }else{
-                backLabel = '';
-            }
-         }
-         let fwdVerseStr = String(Number(verseStr) + 1);
-         fwdLabel = chapStr+'.'+fwdVerseStr;
-         if (undefined !== bookRef[fwdLabel]) { //look up the next part of the book in the book.json
-             fwdLabel = fwdLabel + ' >';
-             fwdDisable = false;
-         }else{ //if that doesnt work,  we'll change the chapter instead.
-             const fwdChapStr = String(Number(chapStr) + 1);
-             fwdVerseStr = "1"; //go to the beginning
-             fwdLabel = fwdChapStr+'.'+fwdVerseStr;
-             if (undefined !== bookRef[fwdLabel]) { //look up the next chapter
-                 fwdLabel = fwdLabel + ' >'; //present it if available
-             }else{
-                fwdLabel = '';
-            }
-         }//
-     }else{//else its a word
-      backLabel = bookPart;
-     }//
+
 
     //Add the requested lookup text
     const embed =  new MessageEmbed()
         .setColor('#f15b40')
         .setAuthor({name: bookRef.translator})
-        .setTitle(bookRef.bookTitle + ' ' + bookPart)
+        .setTitle(bookRef.bookTitle + ' | ' + bookPart)
         .setDescription(bodyText)
-        .setFooter({text: backLabel + '  <'+bookPart+'>  '+ fwdLabel+ ' | '+bookRef.bookTitle});
+        .setFooter({text: bookRef.bookTitle + ' | ' + bookPart});
 
 		return interaction.reply({ embeds: [embed]}); //return it all to index for passing
 

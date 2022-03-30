@@ -1,34 +1,39 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed } = require('discord.js');
-const bookRef = require('./books/liber-al-legis.json');
+const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const bookRef = require('./books/liber-al-legis.json');            //<----CHANGE THE BOOK REF
 
 module.exports = {
 
+    //-------------------------------------------------
 	data: new SlashCommandBuilder()
-		.setName('al')
-		.setDescription('Lookup '+ bookRef.bookTitle)
+		.setName('al')                                      //<----SET THE command name to be  the same as this file's name.js
+		.setDescription('Lookup '+ bookRef.bookTitle) //this is how discord will describe the command to the user
         .addStringOption(option =>
             option.setName('part')
-                .setDescription('chapter#.line#')
+                .setDescription('chapter#.verse#')                   //<----SET THE DESCRIPTION (How is the book divided?)
                 .setRequired(true)),
     
+    //-------------------------------------------------
+    //----------------------------------------------------------------------------------------------------------------------
 	async execute(interaction) {
-        let bookPart = interaction.options.getString('part');
-        bookPart = bookPart.replace(':','.'); //replace semicolons with periods
 
-        if (undefined !== bookRef[bookPart]) {
-             var bodyText =  bookRef[bookPart];
+        let bookPart = interaction.options.getString('part');
+        bookPart = bookPart.replace(':','.'); //automatically replaces semicolons with periods (genesis 1:1 and genesis 1.1 are now taken the same way)
+
+        if (undefined !== bookRef[bookPart]) { //look up the book part in the book.json
+             var bodyText =  bookRef[bookPart]; //dump the response in the body text of the message
         }else{
-            var bodyText =  '**Not found**';
+            var bodyText =  '**Not found**\ntry: `/al  3.75`'; ////<----CHANGE THE EXAMPLE of what a 'proper' call to this command looks like
         }
-          
-        const embed =  new MessageEmbed()
+
+    //Add the requested lookup text
+    const embed =  new MessageEmbed()
         .setColor('#f15b40')
         .setAuthor({name: bookRef.translator})
-        .setTitle(bookRef.bookTitle + ' ' + bookPart)
+        .setTitle(bookRef.bookTitle + ' | ' + bookPart)
         .setDescription(bodyText)
-        .setFooter({text: bookRef.bookTitle+' - '+ bookRef.translator});
-
-		return interaction.reply({embeds: [embed]});
+        .setFooter({text: bookRef.bookTitle + ' | ' + bookPart});
+        
+		return interaction.reply({ embeds: [embed]}); //return it all to index for passing
 	},
 };

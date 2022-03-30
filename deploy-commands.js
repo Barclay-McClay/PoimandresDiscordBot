@@ -7,8 +7,8 @@ const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 
-const clientId = '123456789098765432'; //ID of Bot
-const guildId = '000000000000000000';  //ID of server you wish to deploy the commands in. (This is for development)
+const clientId = '955696145613586472'; //ID of Bot
+const guildId = '702837380163436574';  //ID of server you wish to deploy the commands in. (This is for development)
 
 
 

@@ -19,16 +19,17 @@ module.exports = {
         if (undefined !== bookRef[bookPart]) {
              var bodyText =  bookRef[bookPart];
         }else{
-            var bodyText =  '**Not found**';
+            var bodyText =  '**Not found** Try: `/quran 1.1`';
         }
           
-        embed =  new MessageEmbed()
+    //Add the requested lookup text
+    const embed =  new MessageEmbed()
         .setColor('#f15b40')
         .setAuthor({name: bookRef.translator})
-        .setTitle(bookRef.bookTitle + ' ' + bookPart)
+        .setTitle(bookRef.bookTitle + ' | ' + bookPart)
         .setDescription(bodyText)
-        .setFooter({text: bookRef.bookTitle+' - '+ bookRef.translator});
-
-		return interaction.reply({embeds: [embed]});
+        .setFooter({text: bookRef.bookTitle + ' | ' + bookPart});
+        
+		return interaction.reply({ embeds: [embed]}); //return it all to index for passing
 	},
 };
