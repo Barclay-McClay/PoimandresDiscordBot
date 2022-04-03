@@ -28,11 +28,9 @@ module.exports = {
 
     //Add the requested lookup text
     const embed =  new MessageEmbed()
-        .setColor('#f15b40')
-        .setAuthor({name: bookRef.translator})
-        .setTitle(bookRef.bookTitle + ' | ' + bookPart)
-        .setDescription(bodyText)
-        .setFooter({text: bookRef.bookTitle + ' | ' + bookPart});
+    .setColor('#f15b40')
+    .setDescription(bodyText)
+    .setFooter({text: bookRef.bookTitle + ' | ' + bookPart+ ' | ' + bookRef.translator});
         
 		return interaction.reply({ embeds: [embed]}); //return it all to index for passing
 	},
