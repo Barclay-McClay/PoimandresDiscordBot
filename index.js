@@ -88,7 +88,7 @@ client.on('interactionCreate', async interaction => {
 
 	if (!command) return;
 
-	console.log(command.data.name + " request at " + interaction.guild);
+	console.log(command.data.name + " request at " + interaction.guild.name + " by " + interaction.member.displayName);
 
 	try {
 		await command.execute(interaction);
