@@ -1,4 +1,4 @@
-# "I am Man-Shepherd (Poemandres), Mind of all-masterhood; I know what thou desirest and I'm with thee everywhere."
+<h4> "I am Poimandres, Mind of all-masterhood; I know what thou desirest and I'm with thee everywhere." </h4>
 
 *-The Corpus Hermeticum 1.2*
 
