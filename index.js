@@ -75,7 +75,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-client.once('ready', () => { //log 'read' in console to show bot should be online
+client.once('ready', () => { //log 'ready' in console to show bot should be online
 	console.log('Ready!');
 });
 
@@ -88,7 +88,7 @@ client.on('interactionCreate', async interaction => {
 
 	if (!command) return;
 
-	console.log(command.data.name + " request at " + interaction.guild.name + " by " + interaction.member.displayName);
+	console.log('<'+interaction.createdAt+'> ' + command.data.name + " request at " + interaction.guild.name + " by " + interaction.member.displayName);
 
 	try {
 		await command.execute(interaction);
