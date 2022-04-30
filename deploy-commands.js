@@ -8,7 +8,7 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 
 const clientId = '955696145613586472'; //ID of Bot
-const guildId = '000000000000000000';  //ID of server you wish to deploy the commands in. (This is for development)
+const guildId = '702837380163436574';  //ID of server you wish to deploy the commands in. (This is for development)
 
 
 
@@ -26,6 +26,7 @@ const rest = new REST({ version: '9' }).setToken(token);
 		Global application commands will be available in all the servers this bot has the applications.commands scope authorized, as well as in DMs, but it takes an hour to update.
 		When ready to deploy the bot globally, use *this*:
 		*/
+		
 		await rest.put(
 			Routes.applicationCommands(clientId),
 			{ body: commands },

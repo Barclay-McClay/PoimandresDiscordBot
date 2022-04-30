@@ -1,11 +1,12 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const bookRef = require('./books/sahih-quran.json');
+const commandName = 'quran';                                   //<----SET THE command name to be  the same as this file's name.js
+const bookRef = require(`./books/${commandName}.json`); 
 
 module.exports = {
 
 	data: new SlashCommandBuilder()
-		.setName('quran')
+		.setName(commandName)
 		.setDescription('Lookup '+ bookRef.bookTitle)
         .addStringOption(option =>
             option.setName('part')

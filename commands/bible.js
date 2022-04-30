@@ -1,12 +1,13 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const bookRef = require('./books/king-james-bible.json');            //<----CHANGE THE BOOK REF
+const commandName = 'bible';                                   //<----SET THE command name to be  the same as this file's name.js
+const bookRef = require(`./books/${commandName}.json`); 
 
 module.exports = {
 
     //-------------------------------------------------
 	data: new SlashCommandBuilder()
-		.setName('bible')                                      //<----SET THE command name to be  the same as this file's name.js
+		.setName(commandName)                                      //<----SET THE command name to be  the same as this file's name.js
 		.setDescription('Lookup '+ bookRef.bookTitle ) //this is how discord will describe the command to the user
         .addStringOption(option =>
             option.setName('book')

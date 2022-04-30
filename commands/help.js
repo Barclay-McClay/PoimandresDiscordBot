@@ -1,6 +1,7 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
+const { SlashCommandBuilder, ActionRow } = require('@discordjs/builders');
+const { MessageEmbed, MessageActionRow, MessageSelectMenu, MessageButton } = require('discord.js');
 const fs = require('node:fs');
+const lib = require('./books/LIBRARY.json');
 
 module.exports = {
 
@@ -11,7 +12,8 @@ module.exports = {
 
     //-------------------------------------------------
     //----------------------------------------------------------------------------------------------------------------------
-	async execute(interaction) {
+	async execute(interaction) {//
+
     const embed =  new MessageEmbed()
     .setColor('#f15b40')
     .setDescription('The Poimandres Discord bot quotes a variety of texts themed around religion, the occult, and the esoteric.\nYou can access them with the following slash commands:')
@@ -35,12 +37,17 @@ module.exports = {
     { name: '`/proclus-metaphysics`', value: "Proclus' Elements of Metaphysics\nfrom `1` to `211`\nTranslated by Antonio Vargas (2021)", inline: true },
 
     { name: '\u200B', value: '**Other tools:**'},
-    { name: '`/tarot`', value: 'Rider-Waite-Smith Tarot Card pull\n`/tarot` for a random card\n`/tarot 0-77` for a specific card'}
+    { name: '`/tarot`', value: 'Rider-Waite-Smith Tarot Card pull\n`/tarot` for a random card\n`/tarot 0-77` for a specific card', inline: true},
+    { name: '`/contents`', value: 'Select a text from a drop-down menu.\n(Nobody else sees this but you)', inline: true}
+    
     )
 
     .setFooter({ text:'Poimandres Discord Bot • /help' })
     .setTimestamp();
 
-	return interaction.reply({ embeds: [embed]}); //return it all to index for passing
-	},
+
+	return interaction.reply({embeds: [embed], ephemeral: true}); //return it all to index for passing
+
+	},//
+    
 };

@@ -1,12 +1,13 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed, MessageActionRow, MessageButton } = require('discord.js');
-const bookRef = require('./books/mead-ah.json');            //<----CHANGE THE BOOK REF
+const commandName = 'tarot';                                   //<----SET THE command name to be  the same as this file's name.js
+//const bookRef = require(`./books/${commandName}.json`); 
 
 module.exports = {
 
     //-------------------------------------------------
 	data: new SlashCommandBuilder()
-		.setName('tarot')                                      //<----SET THE command name to be  the same as this file's name.js
+		.setName(commandName)                                      //<----SET THE command name to be  the same as this file's name.js
 		.setDescription('Pull a RWS Tarot Card') //this is how discord will describe the command to the user
         .addStringOption(option =>
             option.setName('card')
@@ -107,8 +108,6 @@ module.exports = {
             pulledCard = cardArr[Math.floor(Math.random() * cardArr.length)];
         }
 
-        console.log(desiredCard);
-       
     //Add the requested lookup text
     const embed =  new MessageEmbed()
     .setColor('#f15b40')
